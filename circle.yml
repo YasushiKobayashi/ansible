@@ -1,0 +1,18 @@
+machine:
+  timezone: Asia/Tokyo
+  python:
+    version: 2.7.10
+
+dependencies:
+  pre:
+    - pip install ansible ansible-lint
+
+test:
+  override:
+    - ansible-playbook bot_master.yml --syntax-check
+    - ansible-lint bot_master.yml
+    - ansible-playbook blog_master.yml --syntax-check
+    - ansible-lint blog_master.yml
+    - ansible-playbook blog_deploy.yml --syntax-check
+    - ansible-lint blog_deploy.yml
+    - exit 0

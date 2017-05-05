@@ -1,0 +1,31 @@
+---
+galaxy_info:
+  author: Andrew Rothstein
+  description: node (n-installer based) role
+  company: BlackRock
+  license:
+    - MIT
+  min_ansible_version: 2.0
+  platforms:
+    - name: EL
+      versions:
+        - all
+    - name: Fedora
+      versions:
+        - all
+    - name: Ubuntu
+      versions:
+        - xenial
+
+  galaxy_tags:
+    - node
+    - npm
+
+dependencies:
+  - role: andrewrothstein.git
+    version: v3.0.0
+  - role: andrewrothstein.curl
+    version: v1.0.1
+  - role: andrewrothstein.bash
+    version: v1.0.0
+

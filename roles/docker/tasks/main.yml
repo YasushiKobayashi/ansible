@@ -1,0 +1,15 @@
+---
+
+- name: set rpm
+  shell: rpm --import http://dl.fedoraproject.org/pub/epel/RPM-GPG-KEY-EPEL-6
+
+- name: docker install
+  yum: name=http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
+
+- name: docker install
+  yum: name={{ item }} state=latest
+  with_items:
+   - docker-io
+
+- name: docker start
+  service: name=docker state=started enabled=yes

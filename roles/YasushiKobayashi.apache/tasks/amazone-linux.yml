@@ -1,0 +1,9 @@
+---
+
+- name: apache installe
+  yum: name={{ item }}
+  with_items:
+    - httpd24
+
+- name: apache start
+  service: name=httpd state=started enabled=yes

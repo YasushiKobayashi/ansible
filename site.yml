@@ -1,0 +1,39 @@
+- name: vagrant_bot
+  hosts:
+    - vagrant_bot
+  vars:
+    Password: vagrant
+  vars_files:
+    - vars/all_vars.yml
+  user: vagrant
+  roles:
+    - redis
+
+- name: master_bot
+  hosts:
+    - master_bot
+  user: git
+  roles:
+    - redis
+
+- name: vagrant_blog
+  hosts:
+    - vagrant_bot
+  vars:
+    Password: vagrant
+  vars_files:
+    - vars/all_vars.yml
+  user: vagrant
+  roles:
+    - php7
+    - apache
+    - mysql5.6
+
+- name: master_blog
+  hosts:
+    - master_bot
+  user: git
+  roles:
+    - php7
+    - apache
+    - mysql5.6

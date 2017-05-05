@@ -1,0 +1,21 @@
+---
+
+- name: set wp-config
+  copy:
+    src="env/wp-config.php" dest="{{ ansistrano_release_path.stdout }}/wordpress"
+  tags: deploy
+
+- name: install yarn
+  shell:
+    yarn install
+  args:
+    chdir: "{{ ansistrano_release_path.stdout }}/wordpress/wp-content/themes/wp-themes"
+  tags: deploy
+
+
+- name: build
+  shell:
+    npm run build
+  args:
+    chdir: "{{ ansistrano_release_path.stdout }}/wordpress/wp-content/themes/wp-themes"
+  tags: deploy

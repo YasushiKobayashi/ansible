@@ -1,0 +1,11 @@
+[bot_master]
+127.0.0.1
+
+[blog_master]
+127.0.0.1
+
+[master:children]
+bot_vagrant
+
+[master:vars]
+ansible_connection=local

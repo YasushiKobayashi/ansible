@@ -1,0 +1,27 @@
+---
+
+- name: install enablerepo
+  yum: name={{ item }} state=latest
+  with_items:
+    - epel-release
+
+- name: pre insall php7
+  yum: name={{ item }} state=latest
+  with_items:
+   - http://rpms.famillecollet.com/enterprise/remi-release-6.rpm
+  ignore_errors: True
+
+- name: php7 install
+  yum: name={{ item }} state=latest enablerepo=remi,remi-php70
+  with_items:
+    - php
+    - php-devel
+    - php-fpm
+    - php-mbstring
+    - php-pdo
+    - php-gd
+    - php-mcrypt
+    - php-mysqlnd
+    - php-mcrypt
+    - php-openssl
+    - phpunit

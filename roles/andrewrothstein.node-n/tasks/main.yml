@@ -1,0 +1,33 @@
+---
+- name: downloading installer...
+  command: curl -L -o /tmp/n-install.sh {{node_n_url}}
+  args:
+    creates: /tmp/n-install.sh
+
+- name: fix permissions on installer file...
+  file:
+    path: /tmp/n-install.sh
+    mode: 0755
+
+# fix version
+- name: install node "{{ node_v }}"
+  environment:
+    N_PREFIX : '{{node_n_prefix}}'
+    PATH: '/bin:/usr/bin:/usr/local/bin'
+  command: /tmp/n-install.sh -y "{{ node_v }}"
+  args:
+    creates: '{{node_n_prefix}}/bin/n'
+
+- name: install latest npm
+  environment:
+    N_PREFIX: '{{node_n_prefix}}'
+    PATH: '/bin:/usr/bin:/usr/local/bin:{{node_n_prefix}}/bin'
+  command: '{{node_n_prefix}}/bin/npm update -g npm'
+
+- name: include in path...
+  with_items:
+    - etc/profile.d/node-n.sh
+  template: >-
+    src={{item}}.j2
+    dest=/{{item}}
+    mode=0644

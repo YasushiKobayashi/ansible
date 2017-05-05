@@ -1,0 +1,38 @@
+#!/usr/bin/env ansible-playbook -i hosts
+- hosts: blog_vagrant
+  become: yes
+  become_user: root
+  become_method: su
+  vars_files:
+    - vars/blog/vars.yml
+    - vars/blog/vagrant.yml
+  roles:
+    - setupcentos
+    - php7
+    - apache
+    - composer
+    - andrewrothstein.node-n
+    - npm
+    - mackerel.mackerel-agent
+
+  tasks:
+    - name: iptables stop
+      service: name=iptables state=stopped enabled=off
+
+    - name: install npm packages from package.json
+      become: false
+      npm:
+        path: /var/www/html/current/wordpress/wp-content/themes/wp-themes
+
+    - name: composer update
+      composer:
+        command: install
+        no_dev: no
+        working_dir: /var/www/html/current/composer
+      tags: composer
+
+    - name: fix documentRoot
+      copy: src=src/httpd.conf dest=/etc/httpd/conf/httpd.conf
+
+    - name: apache restart
+      service: name=httpd state=restarted

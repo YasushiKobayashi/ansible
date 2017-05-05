@@ -1,0 +1,11 @@
+---
+
+- name: epel-release installe
+  yum: name={{ item }} state=latest
+  with_items:
+    - epel-release
+
+- name: ansible installe
+  yum: name={{ item }} state=latest
+  with_items:
+    - ansible

@@ -1,0 +1,9 @@
+---
+
+- name: amazone linux install ansible
+  include: amazone-linux.yml
+  when: "ansible_distribution == 'Amazon'"
+
+- name: centos install ansible
+  include: centos.yml
+  when: "ansible_distribution == 'CentOS'"

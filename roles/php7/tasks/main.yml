@@ -1,0 +1,12 @@
+---
+
+- name: amazone linux install php7
+  include: amazone-linux.yml
+  when: "ansible_distribution == 'Amazon'"
+
+- name: centos install php7
+  include: centos.yml
+  when: "ansible_distribution == 'CentOS'"
+
+- name: fix php.ini
+  copy: src=src/php.ini dest=/etc/php.ini

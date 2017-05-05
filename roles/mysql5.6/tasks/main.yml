@@ -1,0 +1,13 @@
+---
+
+- name: Add repository mysql5.6
+  yum: name=http://repo.mysql.com/mysql-community-release-el6-4.noarch.rpm
+
+- name: mysql5.6 install
+  yum: name={{ item }} state=latest
+  with_items:
+   - mysql-community-server
+   - MySQL-python
+
+- name: mysql start
+  service: name=mysqld state=started enabled=yes

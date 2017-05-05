@@ -1,0 +1,25 @@
+#!/usr/bin/env ansible-playbook -i hosts
+- hosts: master_blog
+  name: develop application
+  become: no
+  vars:
+    ansistrano_deploy_to: /var/www/html
+    ansistrano_deploy_via: git
+    ansistrano_git_repo: git@github.com:YasushiKobayashi/wodpress.git
+    ansistrano_git_branch: master
+    ansistrano_after_update_code_tasks_file: tasks/blog/deploy.yml
+    ansistrano_remove_rolled_back: yes
+    ansistrano_keep_releases: 5
+  roles:
+    - carlosbuenosvinos.ansistrano-deploy
+
+  tasks:
+    - name: fix documentRoot
+      become: yes
+      become_method: su
+      copy: src=src/aws.httpd.conf dest=/etc/httpd/conf/httpd.conf
+
+    - name: apache restart
+      become: yes
+      become_method: su
+      service: name=httpd state=restarted

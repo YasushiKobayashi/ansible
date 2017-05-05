@@ -1,0 +1,31 @@
+#!/usr/bin/env ansible-playbook -i hosts
+- hosts: vagrant_bot
+  become: yes
+  become_user: root
+  become_method: su
+  vars_files:
+    - vars/bot/vars.yml
+    - vars/bot/vagrant.yml
+  roles:
+    - setupcentos
+    - andrewrothstein.node-n
+    - docker
+    - npm
+    - redis
+
+  tasks:
+    - name: iptables stop
+      service: name=iptables state=stopped enabled=off
+
+    - name: yarn install
+      become: no
+      shell: yarn
+      args:
+        chdir: /home/vagrant/bot
+
+    - name: yarn
+      become: no
+      become: no
+      shell: yarn
+      args:
+        chdir: /home/vagrant/bot/bot

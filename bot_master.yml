@@ -1,0 +1,18 @@
+- hosts: bot_master
+  become: yes
+  become_user: root
+  become_method: su
+  vars_files:
+    - vars/bot/vars.yml
+    - vars/bot/master.yml
+    - env/all_env.yml
+  roles:
+    - setupcentos
+    - andrewrothstein.node-n
+    - npm
+    - redis
+    - mackerel.mackerel-agent
+
+  tasks:
+    - name: iptables stop
+      service: name=iptables state=stopped enabled=off

@@ -1,0 +1,25 @@
+---
+
+- name: install pip
+  get_url:
+    url: https://bootstrap.pypa.io/get-pip.py
+    dest: ~/get-pip.py
+  tags: aws-cli
+
+- name: setup pip
+  shell: python get-pip.py
+  args:
+    chdir:
+      ~/
+  tags: aws-cli
+
+- name: install aws-cli
+  pip: name=awscli
+  tags: aws-cli
+
+- name: set aws-cli credentials
+  become: false
+  copy:
+    src: src/.aws
+    dest: ~/
+  tags: aws-cli

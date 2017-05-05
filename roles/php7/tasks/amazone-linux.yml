@@ -1,0 +1,40 @@
+---
+
+- name: install enablerepo
+  yum: name={{ item }} state=latest
+  with_items:
+    - epel-release
+
+- name: set rpm
+  yum: name={{ item }} state=latest
+  with_items:
+   - http://rpms.famillecollet.com/enterprise/remi-release-6.rpm
+  ignore_errors: True
+
+- name: libwebp install
+  yum: name={{ item }} state=latest disablerepo=amzn-main enablerepo=epel
+  with_items:
+    - libwebp
+
+- name: yum install
+  yum: name={{ item }} state=latest
+  with_items:
+    - libmcrypt
+    - libtool-ltdl
+    - libtidy
+    - libXpm
+    - libtiff
+    - gd-last
+    - autoconf
+    - automake
+    - php70
+
+- name: php7 install
+  yum: name={{ item }} state=latest
+  with_items:
+    - php70-mysqlnd
+    - php70-mbstring
+    - php70-mcrypt
+    - php70-pdo
+    - php70-xml
+    - php70-fpm

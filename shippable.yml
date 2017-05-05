@@ -1,0 +1,26 @@
+language: python
+python:
+   - 2.7
+install:
+  - docker pull ptpadan1246/amazonlinux_ansible
+
+build:
+  ci:
+    - docker build -f docker/Dockerfile-bot -t bot_docker .
+    - docker build -f docker/Dockerfile-bot -t blog_docker .
+  on_success:
+    - docker rmi -f bot_docker
+    - docker rmi -f blog_docker
+
+  on_failure:
+    - docker rmi -f bot_docker
+    - docker rmi -f blog_docker
+
+integrations:
+  notifications:
+    - integrationName: my-slack
+      type: slack
+      recipients:
+        - "#build"
+      on_success: always
+      on_failure: always

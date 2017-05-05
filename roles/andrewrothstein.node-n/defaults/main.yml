@@ -1,0 +1,4 @@
+---
+node_n_url : http://git.io/n-install
+node_n_prefix : /usr/local/n
+node_v: 6.7.0

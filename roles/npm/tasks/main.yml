@@ -1,0 +1,20 @@
+---
+
+- name: change node permission
+  file:
+    path: /usr/local/n
+    state: directory
+    recurse: yes
+    owner: '{{ owner }}'
+    group: '{{ group }}'
+    mode: 0755
+  when: env != 'docker'
+
+- name: npm install global packages
+  become: false
+  environment:
+    N_PREFIX: '{{ node_n_prefix }}'
+    PATH: '/bin:/usr/bin:/usr/local/bin:{{node_n_prefix }}/bin'
+  shell: '{{ node_n_prefix }}/bin/npm i -g {{ item }}'
+  with_items:
+    - '{{ npm_g_packages }}'

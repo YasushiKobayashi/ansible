@@ -1,0 +1,10 @@
+npm_g_packages:
+  - yo
+  - coffee
+  - coffee-script
+  - hubot
+  - hubot-slack
+  - generator-hubot
+  - forever
+  - yarn
+  - request
