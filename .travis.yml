@@ -6,7 +6,7 @@ before_install:
   - docker pull ptpadan1246/amazonlinux_ansible
   - mkdir env
   - touch all_env.yml
-  - echo 'mackerel_agent_apikey: "hoge"' > env/all_env.yml
+  - echo 'mackerel_agent_apikey':' hoge' > env/all_env.yml
 
 script:
   - docker build -f docker/Dockerfile-bot -t bot_docker .
