@@ -12,8 +12,3 @@
     - npm
     - redis
     - { role: mackerel.mackerel-agent, when: env != 'docker' }
-
-
-  tasks:
-    - name: iptables stop
-      service: name=iptables state=stopped enabled=off
