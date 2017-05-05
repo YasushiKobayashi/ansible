@@ -5,7 +5,7 @@
 127.0.0.1
 
 [master:children]
-bot_vagrant
+bot_master
 blog_master
 
 [master:vars]
