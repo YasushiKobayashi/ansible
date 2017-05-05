@@ -1,3 +1,4 @@
+#!/usr/bin/env ansible-playbook -i hosts
 - hosts: blog_master
   become: yes
   become_user: root
@@ -14,7 +15,7 @@
     - composer
     - andrewrothstein.node-n
     - npm
-    - mackerel.mackerel-agent
+    - { role: mackerel.mackerel-agent, when: env != 'docker' }
 
   tasks:
     - name: iptables stop

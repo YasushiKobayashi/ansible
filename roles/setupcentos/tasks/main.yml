@@ -2,6 +2,7 @@
 
 - name: yum clean
   shell: yum clean all
+  when: env != 'docker'
 
 - name: upgrade all packages
   yum: name=* state=latest

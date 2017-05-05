@@ -11,7 +11,8 @@
     - andrewrothstein.node-n
     - npm
     - redis
-    - mackerel.mackerel-agent
+    - { role: mackerel.mackerel-agent, when: env != 'docker' }
+
 
   tasks:
     - name: iptables stop
