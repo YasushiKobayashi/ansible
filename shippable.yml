@@ -5,7 +5,7 @@ install:
   - docker pull ptpadan1246/amazonlinux_ansible
   - mkdir env
   - touch all_env.yml
-  - echo 'mackerel_agent_apikey: ""' > env/all_env.yml
+  - echo 'mackerel_agent_apikey: "hoge"' > env/all_env.yml
 
 build:
   ci:
