@@ -9,7 +9,7 @@
   roles:
     - setupcentos
     - php7
-    - apache
+    - YasushiKobayashi.apache
     - composer
     - andrewrothstein.node-n
     - npm

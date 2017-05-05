@@ -6,6 +6,7 @@
 
 [master:children]
 bot_vagrant
+blog_master
 
 [master:vars]
 ansible_connection=local

@@ -3,4 +3,4 @@ MAINTAINER Yasushi Kobayashi <kobayashi@attela.jp>
 
 WORKDIR /ansible
 COPY ./ /ansible
-RUN ansible-playbook -i test_hosts bot_master.yml --extra-vars 'env=docker'
+RUN ansible-playbook -i test_hosts blog_master.yml --extra-vars 'env=docker'

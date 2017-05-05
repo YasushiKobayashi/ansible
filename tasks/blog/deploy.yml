@@ -7,7 +7,7 @@
 
 - name: install yarn
   shell:
-    yarn install
+    yarn
   args:
     chdir: "{{ ansistrano_release_path.stdout }}/wordpress/wp-content/themes/wp-themes"
   tags: deploy

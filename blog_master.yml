@@ -9,7 +9,7 @@
   roles:
     - setupcentos
     - ansible
-    - apache
+    - YasushiKobayashi.apache
     - php7
     - composer
     - andrewrothstein.node-n
