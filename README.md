@@ -1,7 +1,7 @@
 [![Build Status](https://travis-ci.org/YasushiKobayashi/ansible.svg?branch=master)](https://travis-ci.org/YasushiKobayashi/ansible)
 [![Run Status](https://api.shippable.com/projects/590c0a3786175d0700625335/badge?branch=master)](https://app.shippable.com/github/YasushiKobayashi/ansible)
 [![Coverage Badge](https://api.shippable.com/projects/590c0a3786175d0700625335/coverageBadge?branch=master)](https://app.shippable.com/github/YasushiKobayashi/ansible)
-[![CircleCI](https://circleci.com/gh/attela-inc/ansible/tree/master.svg?style=svg&circle-token=f0cf96ca6f305f96d6f4ffd4d3d08a8fe171b0b8)](https://circleci.com/gh/attela-inc/ansible)
+[![CircleCI](https://circleci.com/gh/YasushiKobayashi/ansible.svg?style=svg)](https://circleci.com/gh/YasushiKobayashi/ansible)
 
 ### set for bot
 `ansible-playbook -i hosts bot_master.yml`
