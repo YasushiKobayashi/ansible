@@ -12,3 +12,4 @@
     - npm
     - redis
     - { role: mackerel.mackerel-agent, when: env != 'docker' }
+    - { role: mackerel-plugin, when: env != 'docker' }

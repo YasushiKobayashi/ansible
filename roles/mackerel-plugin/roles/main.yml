@@ -6,7 +6,7 @@
     - mackerel-check-plugins
 
 - name: fix mackerel conf
-  copy: src=env/bot/mackerel.conf dest=/etc/mackerel-agent/mackerel-agent.conf
+  copy: src='env/{{ type }}/mackerel.conf' dest=/etc/mackerel-agent/mackerel-agent.conf
 
 - name: mackerel restart
   service: name=mackerel-agent state=restarted
