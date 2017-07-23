@@ -8,7 +8,6 @@ before_install:
   - touch env/all_env.yml
 
 script:
-  - docker build -f docker/Dockerfile-bot -t bot_docker .
   - docker build -f docker/Dockerfile-blog -t blog_docker .
 
 notifications:

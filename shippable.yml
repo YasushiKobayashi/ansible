@@ -8,14 +8,11 @@ install:
 
 build:
   ci:
-    - docker build -f docker/Dockerfile-bot -t bot_docker .
     - docker build -f docker/Dockerfile-blog -t blog_docker .
   on_success:
-    - docker rmi -f bot_docker
     - docker rmi -f blog_docker
 
   on_failure:
-    - docker rmi -f bot_docker
     - docker rmi -f blog_docker
 
 integrations:
