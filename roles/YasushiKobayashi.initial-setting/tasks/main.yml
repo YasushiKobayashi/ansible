@@ -2,7 +2,6 @@
 
 - name: yum clean
   shell: yum clean all
-  when: env != 'docker'
 
 - name: upgrade all packages
   yum: name=* state=latest
@@ -22,12 +21,8 @@
     - expect
     - zip
     - unzip
-
-- name: install jq
-  get_url:
-    url: http://stedolan.github.io/jq/download/linux64/jq
-    dest: /usr/local/bin/
-    mode: 0755
+    - curl
+    - bison
 
 - name: ntp install
   yum: name={{ item }} state=latest
@@ -36,7 +31,3 @@
 
 - name: ntp start
   service: name=ntpd state=started enabled=yes
-
-- name: iptables stop
-  service: name=iptables state=stopped enabled=off
-  when: env != 'docker'

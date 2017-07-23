@@ -1,0 +1,6 @@
+- hosts: master
+  vars:
+    newrelic_api_key: xxx
+    newrelic_app_name: xxx
+  tasks:
+    - include: 'tasks/main.yml'

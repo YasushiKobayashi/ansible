@@ -1,0 +1,17 @@
+---
+
+- name: get repo
+  yum: pkg={{item}} state=present
+  with_items:
+    - http://yum.newrelic.com/pub/newrelic/el5/x86_64/newrelic-repo-5-3.noarch.rpm
+
+- name: yum install
+  yum: name=newrelic-sysmond state=latest
+
+- name: set api key
+  command: /usr/sbin/nrsysmond-config --set license_key={{ newrelic_api_key }}
+  when: newrelic_api_key is defined
+
+- name: start
+  service: name=newrelic-sysmond state=started enabled=yes
+  when: newrelic_api_key is defined

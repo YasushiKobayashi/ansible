@@ -8,11 +8,17 @@
     - vars/blog/master.yml
     - env/all_env.yml
   roles:
-    - setupcentos
+    - YasushiKobayashi.initial-setting
     - ansible
     - YasushiKobayashi.apache
     - php7
+    - { role: YasushiKobayashi.newrelic, when: env != 'docker' }
+    - { role: YasushiKobayashi.newrelic-php, when: env != 'docker' }
     - composer
     - andrewrothstein.node-n
     - npm
     - { role: mackerel.mackerel-agent, when: env != 'docker' }
+
+  tasks:
+    - name: apache start
+      service: name=httpd state=restarted enabled=yes

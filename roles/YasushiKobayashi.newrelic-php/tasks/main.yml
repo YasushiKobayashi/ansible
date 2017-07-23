@@ -1,0 +1,16 @@
+---
+
+- name: yum install
+  yum: name=newrelic-php5
+
+- name: set api key
+  replace: >
+    dest=/etc/php.d/newrelic.ini
+    regexp='^newrelic.license = "REPLACE_WITH_REAL_KEY"'
+    replace="newrelic.license = {{ newrelic_api_key }}"
+
+- name: set app name
+  replace: >
+    dest=/etc/php.d/newrelic.ini
+    regexp='^newrelic.appname = "PHP Application"'
+    replace="newrelic.appname = {{ newrelic_app_name }}"

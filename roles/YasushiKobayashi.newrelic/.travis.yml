@@ -1,0 +1,15 @@
+sudo: true
+services:
+  - docker
+
+before_install:
+  - docker pull ptpadan1246/amazonlinux_ansible
+  - docker pull centos:6
+
+script:
+  - docker build -f docker/Dockerfile-centos -t centos .
+  - docker build -f docker/Dockerfile-amazone -t amazone .
+
+notifications:
+  slack:
+    secure: km4swXL5P/0CJJJ+wF8BDW5nUDdBZrbj6vBuCBC9M8PBRPx6GRDKziqO/mIj4rdzMMmjx4pEDoDHavAETukvCRvtch6biLzVzBwWGCR9TOUk9DXqzkXLL/0cD+aUgE4efEY2kwfKnoNscexKeY3Uj/gD/iTn5GkSkHpqa/X8eK47Wr52YVm8c60gHfEA45GjTMinO3ii2Z1lz1QoJxl/vh1mTvD4CvdskZnHTd0/acx9+czLXppLW5pEbZZVchslLmZu6HvfX0Z0sl9HmRfGvMqfTu32nbJbj4f/309VMDw2+732rJ63Ax4BBYFZJLrdn+ZImae9gNrYTAzdgrEysnX6xPWiRiAZmy2e8Wni9LlrKKGytAMPJI/MpNZDyvtaZuS0gP57khZCP/2AjA2Pd06RyuOW+hKoGtJX9/B86GJ2tZfoTOgTi7cuB9SRO1XOwwtWVHgU/sYk/P3vKyYM26vyrk25QO+qNVsJUeNyD3dYX/R0YC9RHgJbguVqZFBptEYhXtZl/vU5DxsWdWFZnST/uMnW98j8lTuPtEGKuHAMJx6f+JjaNpJARBBIFrn5mh2vue38DG0rboE+8OaSmeqnrAMny343FiCxWZBRLbbb5SdpBnafjbrxLnCk1bzKxtOD7a7CCHLlrmWx5WHzOGh0Rv2V0lFrlF7sS2PQ8wI=
