@@ -14,10 +14,10 @@
     - php7
     - { role: YasushiKobayashi.newrelic, when: env != 'docker' }
     - { role: YasushiKobayashi.newrelic-php, when: env != 'docker' }
+    - { role: YasushiKobayashi.newrelic-infrastructure, when: env != 'docker' }
     - composer
     - andrewrothstein.node-n
     - npm
-    - { role: mackerel.mackerel-agent, when: env != 'docker' }
 
   tasks:
     - name: apache start

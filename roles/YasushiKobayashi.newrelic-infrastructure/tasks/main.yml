@@ -1,0 +1,25 @@
+---
+
+- name: set
+  file:
+    path: /etc/newrelic-infra.yml
+    owner: root
+    group: root
+    state: touch
+
+- name: set api key
+  lineinfile:
+    dest: /etc/newrelic-infra.yml
+    regexp: 'license_key:'
+    line: 'license_key: {{ newrelic_api_key  }}'
+
+- name: set repo
+  get_url:
+    url: https://download.newrelic.com/infrastructure_agent/linux/yum/el/6/x86_64/newrelic-infra.repo
+    dest: /etc/yum.repos.d/newrelic-infra.repo
+
+- name: install makecache
+  command: yum -q makecache -y --disablerepo='*' --enablerepo='newrelic-infra'
+
+- name: install newrelic-infra
+  yum: name=newrelic-infra

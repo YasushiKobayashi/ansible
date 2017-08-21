@@ -1,0 +1,9 @@
+FROM ptpadan1246/amazonlinux_ansible
+MAINTAINER Yasushi Kobayashi <ptpadan@gmail.com>
+
+RUN ansible-galaxy install YasushiKobayashi.newrelic
+
+WORKDIR /ansible
+COPY ./ /ansible
+RUN ansible-playbook -i docker/hosts main.yml -vvv
+RUN ansible-playbook -i docker/hosts main.yml -vvv
